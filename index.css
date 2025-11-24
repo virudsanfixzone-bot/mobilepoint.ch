@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobilePoint - Gebrauchte & Neue Geräte</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #0056b3;
+            --secondary: #ff6b00;
+            --dark: #333;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-bar {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .contact-info span {
+            margin-right: 20px;
+        }
+        
+        .auth-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+        
+        .main-header {
+            padding: 15px 0;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        .search-cart {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-box {
+            position: relative;
+            margin-right: 20px;
+        }
+        
+        .search-box input {
+            padding: 10px 15px;
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .search-box button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+        }
+        
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: var(--primary);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            position: relative;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            display: none;
+            z-index: 1000;
+        }
+        
+        .dropdown-menu a {
+            color: var(--dark);
+            padding: 12px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .nav-menu li:hover .dropdown-menu {
+            display: block;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e05a00;
+        }
+        
+        /* Categories Section */
+        .categories {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+            margin: 10px auto;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .category-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .category-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .category-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .category-card:hover .category-img img {
+            transform: scale(1.1);
+        }
+        
+        .category-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .category-info h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 60px 0;
+            background-color: var(--light);
+        }
+        
+        .product-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 8px 20px;
+            margin: 0 5px 10px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            height: 40px;
+            overflow: hidden;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .current-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-right: 10px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: var(--gray);
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .add-to-cart {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #004494;
+        }
+        
+        .wishlist {
+            background: none;
+            border: 1px solid #ddd;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .wishlist:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        /* Repair Booking Section */
+        .repair-booking {
+            padding: 60px 0;
+        }
+        
+        .booking-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        .booking-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .booking-steps {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 20px;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .step.active .step-number {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .booking-form {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+        }
+        
+        .footer-bottom {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+        
+        /* Admin Panel */
+        .admin-panel {
+            display: none;
+            padding: 60px 0;
+        }
+        
+        .admin-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .admin-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 30px;
+        }
+        
+        .admin-tab {
+            padding: 12px 25px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .admin-tab.active {
+            border-bottom-color: var(--primary);
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .admin-content {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .admin-table th, .admin-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .admin-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .action-btn.delete {
+            color: #dc3545;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .search-box input {
+                width: 200px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .logo-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .search-cart {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .search-box {
+                flex: 1;
+                margin-right: 10px;
+            }
+            
+            .search-box input {
+                width: 100%;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                display: none;
+                box-shadow: none;
+            }
+            
+            .nav-menu li:hover .dropdown-menu {
+                display: none;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .top-bar .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info {
+                margin-bottom: 10px;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .category-grid, .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .booking-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> +41 123 456 789</span>
+                    <span><i class="fas fa-envelope"></i> info@mobilepoint.ch</span>
+                </div>
+                <div class="auth-links">
+                    <a href="#"><i class="fas fa-user"></i> Mein Konto</a>
+                    <a href="#" id="admin-login-link"><i class="fas fa-cog"></i> Admin</a>
+                </div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="container">
+                <div class="logo-section">
+                    <div class="logo">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMDA1NmIzIiBkPSJNNDQ4IDY0YzAgMzUuMy0yOC43IDY0LTY0IDY0SDY0QzI4LjcgMTI4IDAgOTkuMyAwIDY0UzI4LjcgMCA2NCAwaDMyMGMzNS4zIDAgNjQgMjguNyA2NCA2NHptMCAzODRjMCAzNS4zLTI4LjcgNjQtNjQgNjRINjRjLTM1LjMgMC02NC0yOC43LTY0LTY0czI4LjctNjQgNjQtNjRoMzIwYzM1LjMgMCA2NCAyOC43IDY0IDY0ek05NiAyMjRjLTE3LjcgMC0zMi0xNC4zLTMyLTMyczE0LjMtMzIgMzItMzJzMzIgMTQuMyAzMiAzMnMtMTQuMyAzMi0zMiAzMnptMzIwIDBjLTE3LjcgMC0zMi0xNC4zLTMyLTMyczE0LjMtMzIgMzItMzJzMzIgMTQuMyAzMiAzMnMtMTQuMyAzMi0zMiAzMnoiLz48L3N2Zz4=" alt="MobilePoint Logo">
+                        <h1>MobilePoint</h1>
+                    </div>
+                    <div class="search-cart">
+                        <div class="search-box">
+                            <input type="text" placeholder="Suche nach Produkten...">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+                        <div class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="#" data-page="home">Home</a></li>
+                    <li>
+                        <a href="#" data-page="repair">Reparatur <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">iPhone Reparatur</a></li>
+                            <li><a href="#">Samsung Reparatur</a></li>
+                            <li><a href="#">Tablet Reparatur</a></li>
+                            <li><a href="#">Laptop Reparatur</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-page="smartphones">Smartphones</a></li>
+                    <li><a href="#" data-page="new-devices">Neu Geräte</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Page -->
+        <section id="home-page" class="page active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container">
+                    <h2>Willkommen bei MobilePoint</h2>
+                    <p>Ihr zuverlässiger Partner für gebrauchte und neue Smartphones, Tablets und Laptops. Qualität zu fairen Preisen.</p>
+                    <a href="#" class="btn" data-page="smartphones">Jetzt einkaufen</a>
+                </div>
+            </section>
+
+            <!-- Categories Section -->
+            <section class="categories">
+                <div class="container">
+                    <h2 class="section-title">Unsere Kategorien</h2>
+                    <div class="category-grid">
+                        <div class="category-card">
+                            <div class="category-img">
+                                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="Smartphones">
+                            </div>
+                            <div class="category-info">
+                                <h3>Smartphones</h3>
+                                <p>Gebrauchte und neue Modelle</p>
+                                <a href="#" class="btn" data-page="smartphones">Entdecken</a>
+                            </div>
+                        </div>
+                        <div class="category-card">
+                            <div class="category-img">
+                                <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Laptops">
+                            </div>
+                            <div class="category-info">
+                                <h3>Laptops</h3>
+                                <p>Leistungsstarke Geräte</p>
+                                <a href="#" class="btn">Entdecken</a>
+                            </div>
+                        </div>
+                        <div class="category-card">
+                            <div class="category-img">
+                                <img src="https://images.unsplash.com/photo-1561154464-82e9adf32764?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Tablets">
+                            </div>
+                            <div class="category-info">
+                                <h3>Tablets</h3>
+                                <p>Vielseitige Begleiter</p>
+                                <a href="#" class="btn">Entdecken</a>
+                            </div>
+                        </div>
+                        <div class="category-card">
+                            <div class="category-img">
+                                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Reparatur">
+                            </div>
+                            <div class="category-info">
+                                <h3>Reparatur</h3>
+                                <p>Schnell und zuverlässig</p>
+                                <a href="#" class="btn" data-page="repair">Termin buchen</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Products -->
+            <section class="products">
+                <div class="container">
+                    <h2 class="section-title">Beliebte Produkte</h2>
+                    <div class="product-filters">
+                        <button class="filter-btn active">Alle</button>
+                        <button class="filter-btn">Smartphones</button>
+                        <button class="filter-btn">Laptops</button>
+                        <button class="filter-btn">Tablets</button>
+                        <button class="filter-btn">Angebote</button>
+                    </div>
+                    <div class="product-grid">
+                        <!-- Product 1 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="iPhone 14 Pro">
+                                <span class="product-badge">Neu</span>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Apple iPhone 14 Pro 256GB</h3>
+                                <div class="product-price">
+                                    <span class="current-price">CHF 1'199.-</span>
+                                    <span class="original-price">CHF 1'299.-</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">In den Warenkorb</button>
+                                    <button class="wishlist"><i class="far fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Product 2 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1605236453806-6ff36851218e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" alt="Samsung Galaxy S23">
+                                <span class="product-badge">Angebot</span>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Samsung Galaxy S23 128GB</h3>
+                                <div class="product-price">
+                                    <span class="current-price">CHF 849.-</span>
+                                    <span class="original-price">CHF 949.-</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">In den Warenkorb</button>
+                                    <button class="wishlist"><i class="far fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Product 3 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1142&q=80" alt="MacBook Pro">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Apple MacBook Pro 14" M2</h3>
+                                <div class="product-price">
+                                    <span class="current-price">CHF 2'299.-</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">In den Warenkorb</button>
+                                    <button class="wishlist"><i class="far fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Product 4 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="iPad Air">
+                                <span class="product-badge">Bestseller</span>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">Apple iPad Air 10.9" 64GB</h3>
+                                <div class="product-price">
+                                    <span class="current-price">CHF 699.-</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">In den Warenkorb</button>
+                                    <button class="wishlist"><i class="far fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Repair Booking Page -->
+        <section id="repair-page" class="page">
+            <section class="repair-booking">
+                <div class="container">
+                    <h2 class="section-title">Reparatur-Termin buchen</h2>
+                    <div class="booking-container">
+                        <div class="booking-header">
+                            <h3>Einfach und schnell - Reparatur buchen</h3>
+                        </div>
+                        <div class="booking-steps">
+                            <div class="step active">
+                                <div class="step-number">1</div>
+                                <div class="step-label">Gerät auswählen</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-label">Problem beschreiben</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-label">Termin wählen</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-label">Bestätigung</div>
+                            </div>
+                        </div>
+                        <div class="booking-form">
+                            <form id="repair-form">
+                                <div class="form-group">
+                                    <label for="device-type">Gerätetyp *</label>
+                                    <select id="device-type" class="form-control" required>
+                                        <option value="">Bitte auswählen</option>
+                                        <option value="iphone">iPhone</option>
+                                        <option value="samsung">Samsung</option>
+                                        <option value="other-phone">Anderes Smartphone</option>
+                                        <option value="tablet">Tablet</option>
+                                        <option value="laptop">Laptop</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="device-model">Gerätemodell *</label>
+                                    <input type="text" id="device-model" class="form-control" placeholder="z.B. iPhone 12" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="problem">Problembeschreibung *</label>
+                                        <select id="problem" class="form-control" required>
+                                            <option value="">Bitte auswählen</option>
+                                            <option value="display">Display gebrochen</option>
+                                            <option value="battery">Akku-Probleme</option>
+                                            <option value="charging">Lade-Probleme</option>
+                                            <option value="water">Wasserschaden</option>
+                                            <option value="other">Anderes Problem</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="problem-details">Weitere Details</label>
+                                        <textarea id="problem-details" class="form-control" rows="3" placeholder="Beschreiben Sie das Problem genauer..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name">Name *</label>
+                                        <input type="text" id="name" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">E-Mail *</label>
+                                        <input type="email" id="email" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="phone">Telefon *</label>
+                                        <input type="tel" id="phone" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="preferred-date">Bevorzugtes Datum</label>
+                                        <input type="date" id="preferred-date" class="form-control">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn">Termin anfragen</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Smartphones Page -->
+        <section id="smartphones-page" class="page">
+            <section class="products">
+                <div class="container">
+                    <h2 class="section-title">Smartphones</h2>
+                    <div class="product-filters">
+                        <button class="filter-btn active">Alle</button>
+                        <button class="filter-btn">Apple</button>
+                        <button class="filter-btn">Samsung</button>
+                        <button class="filter-btn">Google</button>
+                        <button class="filter-btn">Huawei</button>
+                        <button class="filter-btn">Gebraucht</button>
+                        <button class="filter-btn">Neu</button>
+                    </div>
+                    <div class="product-grid">
+                        <!-- Product items would be loaded here -->
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- New Devices Page -->
+        <section id="new-devices-page" class="page">
+            <section class="products">
+                <div class="container">
+                    <h2 class="section-title">Neu Geräte</h2>
+                    <div class="product-filters">
+                        <button class="filter-btn active">Alle</button>
+                        <button class="filter-btn">Smartphones</button>
+                        <button class="filter-btn">Laptops</button>
+                        <button class="filter-btn">Tablets</button>
+                        <button class="filter-btn">Zubehör</button>
+                    </div>
+                    <div class="product-grid">
+                        <!-- Product items would be loaded here -->
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Admin Panel -->
+        <section id="admin-panel" class="page admin-panel">
+            <div class="container">
+                <div class="admin-header">
+                    <h2>MobilePoint Admin Panel</h2>
+                    <p>Verwalten Sie Ihre Produkte, Preise und Angebote</p>
+                </div>
+                <div class="admin-tabs">
+                    <button class="admin-tab active" data-tab="products">Produkte</button>
+                    <button class="admin-tab" data-tab="orders">Bestellungen</button>
+                    <button class="admin-tab" data-tab="repairs">Reparaturen</button>
+                    <button class="admin-tab" data-tab="promotions">Aktionen</button>
+                    <button class="admin-tab" data-tab="settings">Einstellungen</button>
+                </div>
+                <div class="admin-content">
+                    <!-- Products Tab -->
+                    <div id="products-tab" class="tab-content active">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3>Produktverwaltung</h3>
+                            <button class="btn" id="add-product-btn">Neues Produkt hinzufügen</button>
+                        </div>
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Bild</th>
+                                    <th>Name</th>
+                                    <th>Kategorie</th>
+                                    <th>Preis</th>
+                                    <th>Status</th>
+                                    <th>Aktionen</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>MP001</td>
+                                    <td><img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="iPhone" style="width: 50px; height: 50px; object-fit: cover;"></td>
+                                    <td>Apple iPhone 14 Pro 256GB</td>
+                                    <td>Smartphones</td>
+                                    <td>CHF 1'199.-</td>
+                                    <td><span style="color: green;">Aktiv</span></td>
+                                    <td>
+                                        <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>MP002</td>
+                                    <td><img src="https://images.unsplash.com/photo-1605236453806-6ff36851218e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Samsung" style="width: 50px; height: 50px; object-fit: cover;"></td>
+                                    <td>Samsung Galaxy S23 128GB</td>
+                                    <td>Smartphones</td>
+                                    <td>CHF 849.-</td>
+                                    <td><span style="color: green;">Aktiv</span></td>
+                                    <td>
+                                        <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Orders Tab -->
+                    <div id="orders-tab" class="tab-content">
+                        <h3>Bestellungen</h3>
+                        <p>Hier können Sie alle Bestellungen verwalten.</p>
+                    </div>
+                    
+                    <!-- Repairs Tab -->
+                    <div id="repairs-tab" class="tab-content">
+                        <h3>Reparaturaufträge</h3>
+                        <p>Hier können Sie alle Reparaturaufträge verwalten.</p>
+                    </div>
+                    
+                    <!-- Promotions Tab -->
+                    <div id="promotions-tab" class="tab-content">
+                        <h3>Aktionen & Rabatte</h3>
+                        <p>Hier können Sie Aktionen und Rabatte verwalten.</p>
+                    </div>
+                    
+                    <!-- Settings Tab -->
+                    <div id="settings-tab" class="tab-content">
+                        <h3>Website-Einstellungen</h3>
+                        <p>Hier können Sie die Website-Einstellungen anpassen.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MobilePoint</h3>
+                    <p>Ihr zuverlässiger Partner für gebrauchte und neue Smartphones, Tablets und Laptops.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Kategorien</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-page="smartphones">Smartphones</a></li>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">Tablets</a></li>
+                        <li><a href="#">Zubehör</a></li>
+                        <li><a href="#" data-page="new-devices">Neu Geräte</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-page="repair">Reparatur</a></li>
+                        <li><a href="#">Garantie</a></li>
+                        <li><a href="#">Finanzierung</a></li>
+                        <li><a href="#">Inzahlungnahme</a></li>
+                        <li><a href="#">Versand & Rückgabe</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Kontakt</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Beispielstrasse 123, 8000 Zürich</li>
+                        <li><i class="fas fa-phone"></i> +41 123 456 789</li>
+                        <li><i class="fas fa-envelope"></i> info@mobilepoint.ch</li>
+                        <li><i class="fas fa-clock"></i> Mo-Fr: 9:00-18:00, Sa: 9:00-16:00</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2023 MobilePoint. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all page links
+            const pageLinks = document.querySelectorAll('a[data-page]');
+            const pages = document.querySelectorAll('.page');
+            
+            // Function to show a specific page
+            function showPage(pageId) {
+                // Hide all pages
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show the selected page
+                const targetPage = document.getElementById(pageId + '-page');
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                }
+                
+                // Update URL without reloading
+                history.pushState(null, null, '#' + pageId);
+            }
+            
+            // Add click event to page links
+            pageLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            });
+            
+            // Check URL on page load
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                showPage(hash);
+            } else {
+                showPage('home');
+            }
+            
+            // Admin Login
+            const adminLoginLink = document.getElementById('admin-login-link');
+            adminLoginLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                showPage('admin');
+            });
+            
+            // Admin Tabs
+            const adminTabs = document.querySelectorAll('.admin-tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            adminTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and contents
+                    adminTabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to current tab and content
+                    this.classList.add('active');
+                    document.getElementById(tabId + '-tab').classList.add('active');
+                });
+            });
+            
+            // Add to Cart functionality
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            const cartCount = document.querySelector('.cart-count');
+            let cartItems = 3; // Initial count
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    cartItems++;
+                    cartCount.textContent = cartItems;
+                    
+                    // Show confirmation
+                    alert('Produkt wurde zum Warenkorb hinzugefügt!');
+                });
+            });
+            
+            // Product Filter
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // In a real implementation, you would filter products here
+                });
+            });
+            
+            // Repair Form Submission
+            const repairForm = document.getElementById('repair-form');
+            
+            repairForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Form validation would go here
+                
+                // Show success message
+                alert('Ihre Reparatur-Anfrage wurde erfolgreich gesendet! Wir werden uns innerhalb von 24 Stunden bei Ihnen melden.');
+                
+                // Reset form
+                repairForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>
